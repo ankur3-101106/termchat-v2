@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: termchat-relay
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true

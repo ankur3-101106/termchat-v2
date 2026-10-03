@@ -1,0 +1,16 @@
+name = "termchat-relay"
+main = "src/index.ts"
+compatibility_date = "2024-08-01"
+
+# TermChat uses a single global relay room for user discovery and routing.
+[durable_objects]
+bindings = [
+  { name = "RELAY", class_name = "RelayServer" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RelayServer"]
+
+[vars]
+SERVER_VERSION = "1.0.0"

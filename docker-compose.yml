@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  relay-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: termchat-relay
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - PORT=8080
