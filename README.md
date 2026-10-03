@@ -65,16 +65,6 @@ Or run locally from this repository:
 
 Download the latest release for your platform from [GitHub Releases](https://github.com/ankur3-101106/termchat-v2/releases/latest).
 
-| Platform | Badge | Client Binary | Server Binary |
-| :--- | :--- | :--- | :--- |
-| **Linux (x86_64)** | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) | `termchat-linux-amd64` | `termchat-server-linux-amd64` |
-| **Linux (ARM64)** | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) | `termchat-linux-arm64` | `termchat-server-linux-arm64` |
-| **macOS (Intel)** | ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white) | `termchat-macos-amd64` | `termchat-server-macos-amd64` |
-| **macOS (Apple Silicon)** | ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white) | `termchat-macos-arm64` | `termchat-server-macos-arm64` |
-| **Windows (x86_64)** | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) | `termchat-windows-amd64.exe` | `termchat-server-windows-amd64.exe` |
-| **Windows (ARM64)** | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) | `termchat-windows-arm64.exe` | `termchat-server-windows-arm64.exe` |
-| **Android (Termux)** | ![Android](https://img.shields.io/badge/Android%20(Termux)-3DDC84?style=flat-square&logo=android&logoColor=white) | `termchat-termux-arm64` | — |
-
 ```bash
 # Linux / macOS / Termux
 chmod +x termchat-linux-amd64
