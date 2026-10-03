@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gorilla/websocket"
 	"github.com/ankur3-101106/termchat-v2/pkg/crypto"
 	"github.com/ankur3-101106/termchat-v2/pkg/protocol"
+	"github.com/gorilla/websocket"
 )
 
 // startTestRelay spins up an in-process relay server for testing.
@@ -388,7 +388,6 @@ func TestRelayErrorOnSelfConnect(t *testing.T) {
 
 	conn, id := connectTestClient(t, wsURL)
 	defer conn.Close()
-
 
 	// Try to connect to self.
 	reqPayload := protocol.ConnectRequestPayload{InitiatorID: id, Message: "self"}
