@@ -10,7 +10,6 @@
 [![Encryption](https://img.shields.io/badge/Encryption-X25519%20%7C%20AES--256--GCM-8a2be2?style=flat-square&logo=matrix)](SECURITY.md)
 [![Relay](https://img.shields.io/badge/Relay-Cloudflare%20Edge-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://termchat-relay.meetkhamar3501.workers.dev/health)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
-[![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=flat-square)](CODE_OF_CONDUCT.md)
 
 <p align="center">
   <a href="#quick-start">Quick Start</a> •
