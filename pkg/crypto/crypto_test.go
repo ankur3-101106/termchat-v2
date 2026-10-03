@@ -3,7 +3,7 @@ package crypto_test
 import (
 	"testing"
 
-	"github.com/viveksec/termchat/pkg/crypto"
+	"github.com/ankur3-101106/termchat-v2/pkg/crypto"
 )
 
 func TestKeyPairGeneration(t *testing.T) {
@@ -125,4 +125,3 @@ func TestSafetyNumber(t *testing.T) {
 		t.Errorf("expected XXX-XXX format (7 chars), got %q (%d chars)", code1, len(code1))
 	}
 }
-

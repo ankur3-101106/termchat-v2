@@ -1,4 +1,4 @@
-module github.com/viveksec/termchat
+module github.com/ankur3-101106/termchat-v2
 
 go 1.23
 

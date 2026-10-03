@@ -14,9 +14,9 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/ankur3-101106/termchat-v2/pkg/crypto"
+	"github.com/ankur3-101106/termchat-v2/pkg/protocol"
 	"github.com/gorilla/websocket"
-	"github.com/viveksec/termchat/pkg/crypto"
-	"github.com/viveksec/termchat/pkg/protocol"
 )
 
 // ANSI color codes for pretty terminal logging

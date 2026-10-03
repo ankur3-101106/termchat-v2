@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/viveksec/termchat/pkg/protocol"
+	"github.com/ankur3-101106/termchat-v2/pkg/protocol"
 )
 
 const (

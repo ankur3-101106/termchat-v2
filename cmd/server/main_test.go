@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/viveksec/termchat/pkg/crypto"
-	"github.com/viveksec/termchat/pkg/protocol"
+	"github.com/ankur3-101106/termchat-v2/pkg/crypto"
+	"github.com/ankur3-101106/termchat-v2/pkg/protocol"
 )
 
 // startTestRelay spins up an in-process relay server for testing.
