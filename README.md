@@ -1,31 +1,67 @@
-# TermChat
+<div align="center">
 
-TermChat is an open-source terminal chat client with end-to-end encrypted one-to-one sessions. Clients discover one another through a relay, then exchange ephemeral X25519 public keys and encrypt chat data locally with AES-256-GCM.
+# 💬 TermChat
 
-The relay assigns temporary six-character IDs and forwards protocol packets. It does not receive private keys, shared secrets, or plaintext chat messages.
+**Secure, end-to-end encrypted terminal chat with zero-knowledge relays.**
 
-## Current relay
+[![Latest Release](https://img.shields.io/github/v/release/ankur3-101106/termchat-v2?style=flat-square&logo=github&color=0969da)](https://github.com/ankur3-101106/termchat-v2/releases/latest)
+[![Go Version](https://img.shields.io/badge/Go-1.23%2B-00ADD8?style=flat-square&logo=go&logoColor=white)](https://go.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg?style=flat-square)](LICENSE)
+[![Encryption](https://img.shields.io/badge/Encryption-X25519%20%7C%20AES--256--GCM-8a2be2?style=flat-square&logo=matrix)](SECURITY.md)
+[![Relay](https://img.shields.io/badge/Relay-Cloudflare%20Edge-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://termchat-relay.meetkhamar3501.workers.dev/health)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=flat-square)](CODE_OF_CONDUCT.md)
 
-The default client relay is the deployed Cloudflare Worker:
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#current-relay">Relay</a> •
+  <a href="#using-the-client">Usage</a> •
+  <a href="#android--termux">Android</a> •
+  <a href="#self-hosting">Self-Hosting</a> •
+  <a href="#security-notes">Security</a> •
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+</div>
+
+---
+
+TermChat is an open-source terminal chat client with end-to-end encrypted one-to-one sessions. Clients discover one another through a relay, exchange ephemeral **X25519** public keys, and encrypt chat data locally with **AES-256-GCM**.
+
+The relay assigns temporary six-character IDs and forwards protocol packets. It never receives private keys, shared secrets, or plaintext chat messages.
+
+---
+
+## 📡 Current Relay
+
+The default client relay is deployed on a Cloudflare Worker with Durable Objects:
 
 ```text
 wss://termchat-relay.meetkhamar3501.workers.dev/ws
 ```
 
-Health check: <https://termchat-relay.meetkhamar3501.workers.dev/health>
+- **Health Check**: <https://termchat-relay.meetkhamar3501.workers.dev/health>
 
-## Quick start
+---
 
-### Download pre-built binaries
+## 🚀 Quick Start
+
+### Download Pre-built Binaries
 
 Download the latest release for your platform from [GitHub Releases](https://github.com/ankur3-101106/termchat-v2/releases/latest).
 
-**Client binaries:** Linux (amd64/arm64), macOS (amd64/arm64), Windows (amd64/arm64), Android/Termux (arm64)
-
-**Server binaries:** Linux (amd64/arm64), macOS (amd64/arm64), Windows (amd64/arm64)
+| Platform | Badge | Client Binary | Server Binary |
+| :--- | :--- | :--- | :--- |
+| **Linux (x86_64)** | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) | `termchat-linux-amd64` | `termchat-server-linux-amd64` |
+| **Linux (ARM64)** | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) | `termchat-linux-arm64` | `termchat-server-linux-arm64` |
+| **macOS (Intel)** | ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white) | `termchat-macos-amd64` | `termchat-server-macos-amd64` |
+| **macOS (Apple Silicon)** | ![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white) | `termchat-macos-arm64` | `termchat-server-macos-arm64` |
+| **Windows (x86_64)** | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) | `termchat-windows-amd64.exe` | `termchat-server-windows-amd64.exe` |
+| **Windows (ARM64)** | ![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white) | `termchat-windows-arm64.exe` | `termchat-server-windows-arm64.exe` |
+| **Android (Termux)** | ![Android](https://img.shields.io/badge/Android%20(Termux)-3DDC84?style=flat-square&logo=android&logoColor=white) | `termchat-termux-arm64` | — |
 
 ```bash
-# Linux/macOS/Termux
+# Linux / macOS / Termux
 chmod +x termchat-linux-amd64
 ./termchat-linux-amd64
 
@@ -33,105 +69,107 @@ chmod +x termchat-linux-amd64
 termchat-windows-amd64.exe
 ```
 
-The client uses the Cloudflare relay by default. To use a custom relay:
+The client connects to the Cloudflare relay by default. To specify a custom relay:
 ```bash
 ./termchat-linux-amd64 -server wss://your-relay.example.com/ws
 ```
 
-### Build from source
+---
 
-Requirements: Go 1.23 or newer.
+### Build From Source
+
+**Prerequisite:** Go 1.23 or newer.
 
 ```bash
+# Clone the repository
 git clone https://github.com/ankur3-101106/termchat-v2.git
 cd termchat-v2
+
+# Run directly
 go run ./cmd/client
-```
 
-Or build a local binary:
-
-```bash
+# Or compile locally
 mkdir -p bin
 go build -o bin/termchat ./cmd/client
 ./bin/termchat
 ```
 
-### Cross-platform builds
+### Cross-Platform Builds
 
 ```bash
 ./build-cross-platform.sh
 ```
 
-This builds client and server binaries for Linux, macOS, Windows (amd64/arm64) and outputs to `bin/`.
+Builds binaries for Linux, macOS, and Windows across `amd64` and `arm64`, and saves them to `bin/`.
 
-## Using the client
+---
 
-1. Start the client on two machines.
-2. Each client receives a temporary ID shown in the user list.
-3. On one client, enter `/connect USER_ID`.
-4. Accept the request on the other client.
-5. Verify the safety number out of band with `/verify` or `Ctrl+V`.
-6. Send messages after the encrypted session is established.
+## 💻 Using the Client
 
-Commands:
+1. Start the client on two different terminals or machines.
+2. Each client receives a temporary six-character ID.
+3. On one client, request connection: `/connect <USER_ID>`.
+4. Accept the incoming request on the second client.
+5. Verify the safety number out-of-band using `/verify` or `Ctrl+V`.
+6. Start chatting securely with end-to-end encryption.
 
-| Command | Purpose |
-| --- | --- |
-| `/connect USER_ID` | Request a session with another online user |
-| `/disconnect` or `/leave` | End the current session |
-| `/sendfile PATH` | Send an encrypted file to the peer |
-| `/verify` | Display the session safety number |
-| `/whoami` | Display your temporary user ID |
-| `/clear` | Clear chat history |
-| `/panic` | Show the privacy screen |
-| `/help` | Show built-in help |
+### Client Commands
 
-Press `F1` for help and `Ctrl+C` to exit. Use `-log FILE` when troubleshooting connection problems:
+| Command | Shortcut | Purpose |
+| :--- | :--- | :--- |
+| `/connect <USER_ID>` | — | Request a session with an online user |
+| `/disconnect`, `/leave` | — | Terminate the current session |
+| `/sendfile <PATH>` | — | Send an encrypted file to the connected peer |
+| `/verify` | `Ctrl+V` | Display the cryptographic session safety number |
+| `/whoami` | — | Display your assigned temporary ID |
+| `/clear` | — | Clear current chat history |
+| `/panic` | — | Immediately toggle privacy screen |
+| `/help` | `F1` | Show built-in command assistance |
 
+Press `Ctrl+C` to quit. For troubleshooting:
 ```bash
 ./termchat-linux-amd64 -log /tmp/termchat.log
 ```
 
-The server can also be selected with `TERMCHAT_SERVER`:
-
+Or set the default server environment variable:
 ```bash
-export TERMCHAT_SERVER=wss://example.com/ws
+export TERMCHAT_SERVER=wss://your-relay.example.com/ws
 ./termchat-linux-amd64
 ```
 
-## Android / Termux
+---
 
-TermChat runs on Android via [Termux](https://termux.dev/) (install from F-Droid or GitHub):
+## 📱 Android / Termux
+
+TermChat runs seamlessly on Android via [Termux](https://termux.dev/):
 
 ```bash
-# In Termux
-pkg install curl
+# Inside Termux
+pkg update && pkg install curl
 curl -LO https://github.com/ankur3-101106/termchat-v2/releases/download/v1.0.1/termchat-termux-arm64
 chmod +x termchat-termux-arm64
 ./termchat-termux-arm64
 ```
 
-The `linux/arm64` binary works natively in Termux's Linux environment.
+---
 
-## Run a local Go relay
+## 🛠️ Self-Hosting
 
-The repository includes a self-hosted Go relay for local development or a server you operate yourself:
-
+### Local Go Relay
+Run a self-hosted Go relay server:
 ```bash
 go run ./cmd/server -addr :8080
 ```
 
-In another terminal:
-
+In another terminal, connect using:
 ```bash
 go run ./cmd/client -server ws://localhost:8080/ws
 ```
 
-The Go relay supports `PORT`, `PUBLIC_HOST`, and `PUBLIC_TLS` for deployment environments. For Docker-based deployments, see [Dockerfile](Dockerfile) and [docker-compose.yml](docker-compose.yml). The included [render.yaml](render.yaml) is an optional Render deployment configuration.
+Environment variables supported: `PORT`, `PUBLIC_HOST`, and `PUBLIC_TLS`. Container deployment files are available at [Dockerfile](Dockerfile) and [docker-compose.yml](docker-compose.yml), with optional Render configuration in [render.yaml](render.yaml).
 
-## Cloudflare Worker relay
-
-The production relay is implemented with a Cloudflare Worker and Durable Object. Deployment and local Worker development instructions are in [cloudflare/README.md](cloudflare/README.md).
+### Cloudflare Worker Relay
+The production relay runs on Cloudflare Workers using Durable Objects. See [cloudflare/README.md](cloudflare/README.md) for full deployment instructions:
 
 ```bash
 cd cloudflare
@@ -139,43 +177,49 @@ bun install
 bunx wrangler deploy
 ```
 
-Clients connect to the deployed Worker at its `/ws` path using `wss://`.
+---
 
-## Development
+## 🧪 Development & Testing
 
-Run all Go tests:
-
+Run all Go unit and integration tests:
 ```bash
 go test ./...
 ```
 
-Run the demo:
-
+Run the interactive encryption demo:
 ```bash
 go run ./cmd/demo
 ```
 
-The protocol and cryptography packages have focused unit tests. The relay tests cover connection IDs, user-list broadcasts, routing, and an encrypted session flow.
+---
 
-## Repository layout
+## 📁 Repository Layout
 
 ```text
-cmd/client/       Terminal client and WebSocket connection manager
-cmd/server/       Go WebSocket relay
-cmd/demo/         Protocol and encryption demonstration
-pkg/crypto/       X25519, key derivation, AES-GCM, and safety numbers
-pkg/protocol/     Shared JSON packet types
-cloudflare/       Cloudflare Worker relay and Durable Object
-scripts/test-relay/ Relay test utility
-bin/              Cross-platform binaries (git-ignored, built locally)
+├── cmd/
+│   ├── client/          # Terminal UI client (Bubbletea, Lip Gloss)
+│   ├── server/          # Go WebSocket relay server
+│   └── demo/            # Interactive encryption protocol demonstration
+├── pkg/
+│   ├── crypto/          # X25519 ECDH, HKDF key derivation, AES-256-GCM, safety numbers
+│   └── protocol/        # Shared packet models and JSON serialization
+├── cloudflare/          # Serverless relay worker (Cloudflare Workers + Durable Objects)
+├── scripts/test-relay/  # Automated relay WebSocket integration test
+└── build-cross-platform.sh # Multi-platform release build script
 ```
 
-## Security notes
+---
 
-- Chat payloads are encrypted before they are sent to the relay.
-- Each client creates an ephemeral X25519 key pair for its process session.
-- AES-GCM authenticates encrypted messages and file chunks.
-- The safety number should be compared through a separate trusted channel.
-- The relay still sees connection metadata such as temporary IDs, timing, and packet routing fields.
+## 🔒 Security Notes
 
-TermChat is provided under the [MIT License](LICENSE).
+- **End-to-End Encryption**: Chat payloads and file transfers are encrypted locally with AES-256-GCM before transmission.
+- **Ephemeral Sessions**: Each client session generates a fresh, ephemeral X25519 key pair that is discarded on disconnect.
+- **Zero-Knowledge Relay**: Relays route packets using temporary IDs and never hold private keys or plaintext data.
+- **Out-of-Band Verification**: Compare safety numbers (`/verify`) via an external channel to guard against MITM attacks.
+- Review our full [Security Policy](SECURITY.md) for vulnerability reporting and architecture details.
+
+---
+
+## 📄 License
+
+TermChat is open source released under the [MIT License](LICENSE).
