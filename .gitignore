@@ -36,3 +36,6 @@ cloudflare/.wrangler/
 *.zip
 error.log
 /bin/
+
+# Local guidelines
+commit.md
