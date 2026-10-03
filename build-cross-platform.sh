@@ -63,6 +63,7 @@ done
 # Keep the historical Linux launcher names in sync with the release build.
 cp "$OUTPUT_DIR/termchat-linux-amd64" "$OUTPUT_DIR/termchat"
 cp "$OUTPUT_DIR/termchat-linux-amd64" "$OUTPUT_DIR/termchat-linux"
+cp "$OUTPUT_DIR/termchat-linux-arm64" "$OUTPUT_DIR/termchat-termux-arm64"
 cp "$OUTPUT_DIR/termchat-windows-amd64.exe" "$OUTPUT_DIR/termchat.exe"
 
 echo ""

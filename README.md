@@ -18,7 +18,7 @@ Health check: <https://termchat-relay.meetkhamar3501.workers.dev/health>
 
 ### Download pre-built binaries
 
-Download the latest release for your platform from [GitHub Releases](https://github.com/ankur3-101106/termchat/releases/latest).
+Download the latest release for your platform from [GitHub Releases](https://github.com/ankur3-101106/termchat-v2/releases/latest).
 
 **Client binaries:** Linux (amd64/arm64), macOS (amd64/arm64), Windows (amd64/arm64), Android/Termux (arm64)
 
@@ -43,8 +43,8 @@ The client uses the Cloudflare relay by default. To use a custom relay:
 Requirements: Go 1.23 or newer.
 
 ```bash
-git clone https://github.com/ankur3-101106/termchat.git
-cd termchat
+git clone https://github.com/ankur3-101106/termchat-v2.git
+cd termchat-v2
 go run ./cmd/client
 ```
 
@@ -106,7 +106,7 @@ TermChat runs on Android via [Termux](https://termux.dev/) (install from F-Droid
 ```bash
 # In Termux
 pkg install curl
-curl -LO https://github.com/ankur3-101106/termchat/releases/download/v1.0.1/termchat-termux-arm64
+curl -LO https://github.com/ankur3-101106/termchat-v2/releases/download/v1.0.1/termchat-termux-arm64
 chmod +x termchat-termux-arm64
 ./termchat-termux-arm64
 ```
