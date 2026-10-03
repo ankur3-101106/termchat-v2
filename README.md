@@ -45,6 +45,22 @@ wss://termchat-relay.meetkhamar3501.workers.dev/ws
 
 ## 🚀 Quick Start
 
+### Automated Install (Linux, macOS, Android/Termux)
+
+Run the automated installer to detect your system architecture, download the latest binary, and configure your PATH:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ankur3-101106/termchat-v2/master/install.sh | bash
+```
+
+Or run locally from this repository:
+
+```bash
+./install.sh
+```
+
+---
+
 ### Download Pre-built Binaries
 
 Download the latest release for your platform from [GitHub Releases](https://github.com/ankur3-101106/termchat-v2/releases/latest).
